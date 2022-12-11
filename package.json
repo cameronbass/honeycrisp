@@ -1,0 +1,11 @@
+{
+  "name": "honeycrisp",
+  "version": "1.0.3",
+  "description": "A crispy input for 2FA",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Cameron Bass",
+  "license": "ISC"
+}
