@@ -1,35 +1,61 @@
 /**
  * @class  Honeycrisp
  * @param  {HTMLElement}  el
- * @param  {Object}       [options]
- */
+ * @param  {Object} [options]
+*/
 function Honeycrisp(el, options) {
-  this.el = document.querySelector(el); // root element
-	this.options = options = Object.assign({}, options)
+  const rootElement = document.querySelector(el); // root element
+	const assignedOptions = Object.assign({}, options)
 
-  const newDiv = document.createElement('div') 
-  const newContent = document.createTextNode("Hi there and greetings!")
+  // build wrapper class and add class to element
+  const wrapper = buildWrapperElement(assignedOptions)
 
-  newDiv.appendChild(newContent)
+  for (let i = 0; i < assignedOptions['inputCount']; i++) {
+    addSingleInput(rootElement, assignedOptions, wrapper)
+  }
+}
 
-  this.el.append(newDiv)
+function addSingleInput(el, options, wrapper) {
+  const input = buildInput(options)
+
+  wrapper.appendChild(input)
+
+  el.append(wrapper)
+}
+
+function buildWrapperElement(options) {
+  // build wrapper
+  const wrapper = document.createElement('div') 
+
+  // add class
+  wrapper.classList.add(options['wrapperClass'])
+
+  // return wrapper
+  return wrapper
+}
+
+function buildInput(options) {
+  // build element
+  const input = document.createElement('input')
+
+  // add class
+  input.classList.add(options['inputClass'])
+
+  // define input specifications
+  input.name = options['inputName']
+  input.type = 'number'
+
+  // return input
+  return input
 }
 
 /**
  * Create honeycrisp instance
  * @param {HTMLElement}  el
- * @param {Object}      [options]
- */
- Honeycrisp.create = function (el, options) {
+ * @param {Object} [options]
+*/
+Honeycrisp.create = function (el, options) {
 	return new Honeycrisp(el, options);
 };
 
 export default Honeycrisp;
-
-// /**
-//  */
-// module.exports = {
-//   displayMessage: function () {
-//     console.log('hey')
-//   }
-// }

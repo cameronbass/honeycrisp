@@ -1,6 +1,6 @@
 {
   "name": "honeycrisp",
-  "version": "1.0.3",
+  "version": "1.0.9",
   "description": "A crispy input for 2FA",
   "main": "app.js",
   "scripts": {
