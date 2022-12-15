@@ -83,6 +83,14 @@ function addInputListener(input) {
   input.addEventListener('input', (event) => {
     const nextEl = input.nextElementSibling;
 
+    if (!(nextEl instanceof HTMLInputElement)) {
+      if (event.inputType === 'insertText') {
+        input.value = event.data
+      }
+
+      return 
+    }
+
     nextEl.focus()
 
     if (nextEl.value !== "") {
@@ -96,16 +104,22 @@ function addInputListener(input) {
 }
 
 function handleForward(nextEl) {
+  if (nextEl.tagName.toLowerCase() !== 'input') { return }
+
   nextEl.focus()
   nextEl.select()
 };
 
 function handleBack(prevEl) {
+  if (prevEl.tagName.toLowerCase() !== 'input') { return }
+
   prevEl.focus()
   prevEl.select()
 }
 
 function handleBackSpace(prevEl, input) {
+  if (prevEl.tagName.toLowerCase() !== 'input') { return }
+
   if (input.value !== '') {
     input.value = ''
     input.focus()
