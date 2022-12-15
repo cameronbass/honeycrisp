@@ -57,25 +57,32 @@ function addInputListener(input) {
     const prevEl = input.previousElementSibling;
     const nextEl = input.nextElementSibling;
 
+    if (event.keyCode == 8) {
+      handleBackSpace(prevEl, input)
+    }
+
+    if (event.keyCode == 37) {
+      handleBack(prevEl)
+    }
+
+    if (event.keyCode == 39) {
+      handleForward(nextEl)
+    }
+
     if (event.keyCode === 38 || event.keyCode === 40) {
       event.preventDefault()
     }
 
-    if (event.keyCode == 37) {
-      prevEl.focus()
-      prevEl.select()
-    }
+    if (isNaN(event.key)) {
+      event.preventDefault()
 
-    if (event.keyCode == 39) {
-      nextEl.focus()
-      nextEl.select()
+      return
     }
   })
 
   input.addEventListener('input', (event) => {
     const nextEl = input.nextElementSibling;
 
-    // nextEl.value = event.value.replace(/[^0-9]/g,'')
     nextEl.focus()
 
     if (nextEl.value !== "") {
@@ -86,6 +93,28 @@ function addInputListener(input) {
   input.addEventListener('click', (event) => {
     input.select()
   })
+}
+
+function handleForward(nextEl) {
+  nextEl.focus()
+  nextEl.select()
+};
+
+function handleBack(prevEl) {
+  prevEl.focus()
+  prevEl.select()
+}
+
+function handleBackSpace(prevEl, input) {
+  if (input.value !== '') {
+    input.value = ''
+    input.focus()
+
+    return
+  }
+
+  prevEl.value = ''
+  prevEl.focus()
 }
 
 /**
