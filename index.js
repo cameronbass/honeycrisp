@@ -76,7 +76,7 @@ function buildInput(options, index, wrapper) {
   input.type = 'text'
   input.maxLength = '1'
 
-  addInputListener(input, wrapper)
+  addInputListener(input, wrapper, options)
 
   return input
 }
@@ -105,7 +105,7 @@ function buildWrapperElement(options) {
  * override the native browser behavior to ensure
  * the inputs act intuitively.
 */
-function addInputListener(input, wrapper) {
+function addInputListener(input, wrapper, options) {
   input.addEventListener('keydown', (event) => {
     const prevEl = input.previousElementSibling;
     const nextEl = input.nextElementSibling;
@@ -150,7 +150,7 @@ function addInputListener(input, wrapper) {
       nextEl.select()
     }
 
-    setHiddenInput(wrapper)
+    setHiddenInput(wrapper, options)
   })
 
   input.addEventListener('click', (event) => {
@@ -158,7 +158,9 @@ function addInputListener(input, wrapper) {
   })
 }
 
-function setHiddenInput (wrapper) {
+function setHiddenInput (wrapper, options) {
+  var inputValue = ''
+  const hiddenInput = wrapper.querySelector(`input[name=${options['inputName']}]`)
   const inputs = []
   const inputIds = [0,1,2,3,4,5]
 
@@ -168,7 +170,11 @@ function setHiddenInput (wrapper) {
     inputs.push(foundInput)
   })
 
-  console.log(inputs)
+  inputs.forEach($input => {
+    inputValue += $input.value
+  })
+
+  hiddenInput.value = inputValue
 }
 
 /**
