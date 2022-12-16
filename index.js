@@ -1,11 +1,26 @@
 /**
+ * @function defaultOptions
+ * Set options that can be overridden
+ * when creating the Honeycrisp instance.
+*/
+function defaultOptions () {
+  return {
+    inputClass: 'default-input-class',
+    wrapperClass: 'default-wrapper-class',
+    inputCount: 6,
+    inputName: 'name',
+    submitOnComplete: false
+  }
+}
+
+/**
  * @class  Honeycrisp
  * @param  {HTMLElement}  el
  * @param  {Object} [options]
 */
 function Honeycrisp(el, options) {
   const rootElement = document.querySelector(el); // root element
-	const assignedOptions = Object.assign({}, options)
+  const assignedOptions = Object.assign({...defaultOptions()}, options);
 
   // build wrapper class and add class to element
   const wrapper = buildWrapperElement(assignedOptions)
@@ -104,21 +119,21 @@ function addInputListener(input) {
 }
 
 function handleForward(nextEl) {
-  if (nextEl.tagName.toLowerCase() !== 'input') { return }
+  if (!(nextEl instanceof HTMLInputElement)) { return }
 
   nextEl.focus()
   nextEl.select()
 };
 
 function handleBack(prevEl) {
-  if (prevEl.tagName.toLowerCase() !== 'input') { return }
+  if (!(prevEl instanceof HTMLInputElement)) { return }
 
   prevEl.focus()
   prevEl.select()
 }
 
 function handleBackSpace(prevEl, input) {
-  if (prevEl.tagName.toLowerCase() !== 'input') { return }
+  if (!(prevEl instanceof HTMLInputElement)) { return }
 
   if (input.value !== '') {
     input.value = ''
