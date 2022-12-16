@@ -30,6 +30,14 @@ function Honeycrisp(el, options) {
   }
 }
 
+/**
+ * @function addSingleInput
+ * @param  {HTMLElement}  el
+ * @param  {Object} [options]
+ * @param  {HTMLElement} wrapper
+ * Pass the root element as the first argument
+ * and append the built input to the parent wrapper
+*/
 function addSingleInput(el, options, wrapper) {
   const input = buildInput(options)
 
@@ -38,6 +46,12 @@ function addSingleInput(el, options, wrapper) {
   el.append(wrapper)
 }
 
+/**
+ * @function buildWrapperElement
+ * @param  {Object} [options]
+ * Create the wrapper div and add the 
+ * class from the options and return the wrapper
+*/
 function buildWrapperElement(options) {
   // build wrapper
   const wrapper = document.createElement('div') 
@@ -49,24 +63,36 @@ function buildWrapperElement(options) {
   return wrapper
 }
 
+/**
+ * @function buildInput
+ * @param  {Object} [options]
+ * Create an input and add the input class from
+ * the options and apply event listeners to the input
+*/
 function buildInput(options) {
-  // build element
+  // Build element
   const input = document.createElement('input')
 
-  // add class
+  // Add class
   input.classList.add(options['inputClass'])
 
-  // define input specifications
+  // Define input specifications
   input.name = options['inputName']
   input.type = 'text'
   input.maxLength = '1'
 
   addInputListener(input)
 
-  // return input
   return input
 }
 
+/**
+ * @function addInputListener
+ * @param  {HTMLElement} input
+ * Add listeners to look for specific keys and
+ * override the native browser behavior to ensure
+ * the inputs act intuitively.
+*/
 function addInputListener(input) {
   input.addEventListener('keydown', (event) => {
     const prevEl = input.previousElementSibling;
@@ -118,6 +144,11 @@ function addInputListener(input) {
   })
 }
 
+/**
+ * @function handleForward
+ * @param  {HTMLElement} nextEl
+ * Handle the right arrow action
+*/
 function handleForward(nextEl) {
   if (!(nextEl instanceof HTMLInputElement)) { return }
 
@@ -125,6 +156,11 @@ function handleForward(nextEl) {
   nextEl.select()
 };
 
+/**
+ * @function handleBack
+ * @param  {HTMLElement} prevEl
+ * Handle the left arrow action
+*/
 function handleBack(prevEl) {
   if (!(prevEl instanceof HTMLInputElement)) { return }
 
@@ -132,6 +168,12 @@ function handleBack(prevEl) {
   prevEl.select()
 }
 
+/**
+ * @function handleBackSpace
+ * @param  {HTMLElement} prevEl
+ * @param  {HTMLElement} input
+ * Handle the backspace action
+*/
 function handleBackSpace(prevEl, input) {
   if (!(prevEl instanceof HTMLInputElement)) { return }
 
