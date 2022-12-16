@@ -9,7 +9,6 @@ function defaultOptions () {
     wrapperClass: 'default-wrapper-class',
     inputCount: 6,
     inputName: 'name',
-    submitOnComplete: false
   }
 }
 
@@ -25,9 +24,22 @@ function Honeycrisp(el, options) {
   // build wrapper class and add class to element
   const wrapper = buildWrapperElement(assignedOptions)
 
-  for (let i = 0; i < assignedOptions['inputCount']; i++) {
-    addSingleInput(rootElement, assignedOptions, wrapper)
+  for (let index = 0; index < assignedOptions['inputCount']; index++) {
+    addSingleInput(rootElement, assignedOptions, wrapper, index)
   }
+
+  addHiddenInput(wrapper, assignedOptions)
+}
+
+function addHiddenInput (wrapper, options) {
+  // Build element
+  const input = document.createElement('input')
+
+  // Define input specifications
+  input.name = options['inputName']
+  input.type = 'hidden'
+
+  wrapper.appendChild(input)
 }
 
 /**
@@ -38,12 +50,35 @@ function Honeycrisp(el, options) {
  * Pass the root element as the first argument
  * and append the built input to the parent wrapper
 */
-function addSingleInput(el, options, wrapper) {
-  const input = buildInput(options)
+function addSingleInput(el, options, wrapper, index) {
+  const input = buildInput(options, index, wrapper)
 
   wrapper.appendChild(input)
 
   el.append(wrapper)
+}
+
+/**
+ * @function buildInput
+ * @param  {Object} [options]
+ * Create an input and add the input class from
+ * the options and apply event listeners to the input
+*/
+function buildInput(options, index, wrapper) {
+  // Build element
+  const input = document.createElement('input')
+
+  // Add class
+  input.classList.add(options['inputClass'])
+
+  // Define input specifications
+  input.id = `honeycrisp-single-input-${index}`
+  input.type = 'text'
+  input.maxLength = '1'
+
+  addInputListener(input, wrapper)
+
+  return input
 }
 
 /**
@@ -64,36 +99,13 @@ function buildWrapperElement(options) {
 }
 
 /**
- * @function buildInput
- * @param  {Object} [options]
- * Create an input and add the input class from
- * the options and apply event listeners to the input
-*/
-function buildInput(options) {
-  // Build element
-  const input = document.createElement('input')
-
-  // Add class
-  input.classList.add(options['inputClass'])
-
-  // Define input specifications
-  input.name = options['inputName']
-  input.type = 'text'
-  input.maxLength = '1'
-
-  addInputListener(input)
-
-  return input
-}
-
-/**
  * @function addInputListener
  * @param  {HTMLElement} input
  * Add listeners to look for specific keys and
  * override the native browser behavior to ensure
  * the inputs act intuitively.
 */
-function addInputListener(input) {
+function addInputListener(input, wrapper) {
   input.addEventListener('keydown', (event) => {
     const prevEl = input.previousElementSibling;
     const nextEl = input.nextElementSibling;
@@ -137,11 +149,26 @@ function addInputListener(input) {
     if (nextEl.value !== "") {
       nextEl.select()
     }
+
+    setHiddenInput(wrapper)
   })
 
   input.addEventListener('click', (event) => {
     input.select()
   })
+}
+
+function setHiddenInput (wrapper) {
+  const inputs = []
+  const inputIds = [0,1,2,3,4,5]
+
+  inputIds.forEach($input => {
+    const foundInput = wrapper.querySelector(`#honeycrisp-single-input-${$input}`)
+
+    inputs.push(foundInput)
+  })
+
+  console.log(inputs)
 }
 
 /**
