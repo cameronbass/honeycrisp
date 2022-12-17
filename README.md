@@ -3,7 +3,7 @@
 <p align="center">
 <img src="https://user-images.githubusercontent.com/13616332/207875618-daed766b-64bc-4f73-a62b-3fad21c3b705.png">
 </p>
-<h2 align="center">A crispy input for numerals</h2>
+<h2 align="center">A Crispy Input For Numbers</h2>
 
 <h1>Demo</h1>
 
