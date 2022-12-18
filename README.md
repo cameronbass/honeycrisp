@@ -5,6 +5,8 @@
 </p>
 <h2 align="center">A Crispy Input For Numbers</h2>
 
+Honeycrisp is a number input that is inspired by common two-factor auth login flows that require 6-digit inputs for one-time passwords. 
+
 <h1>Demo</h1>
 
 We have created a demonstration that can be found on [Codepen](https://codepen.io/cambass23/pen/wvxwJKY)
@@ -43,6 +45,14 @@ Honeycrisp.create('.honeycrisp', {
   submitOnComplete: false,
 });
 ```
+
+<h1>Future Updates</h1>
+
+- [ ] Add Tests
+- [ ] Enable options for `submitOnComplete` -- Option is currently defaulted to false
+- [ ] Add default stylesheet
+
+These items will be removed from the list after completion. Feel free to contribute!
 
 <h1>License</h1>
 <p>MIT</p>
