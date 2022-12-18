@@ -1,4 +1,4 @@
-# Honeycrisp  &nbsp; [![npm version](https://badge.fury.io/js/honeycrisp.svg)](https://badge.fury.io/js/honeycrisp)
+# Honeycrisp  &nbsp; <a href="https://badge.fury.io/js/honeycrisp"><img src="https://badge.fury.io/js/honeycrisp.svg" alt="npm version" height="18"></a>
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/13616332/207875618-daed766b-64bc-4f73-a62b-3fad21c3b705.png">
