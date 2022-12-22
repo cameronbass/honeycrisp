@@ -106,6 +106,48 @@ function buildWrapperElement(options) {
  * the inputs act intuitively.
 */
 function addInputListener(input, wrapper, options) {
+  input.addEventListener('paste', (event) => {
+    const pasteData = event.clipboardData.getData('text/plain')
+    const isNumeric = n => !isNaN(n);
+
+    if (!isNumeric(pasteData)) { 
+      return 
+    }
+
+    const originalInput = input
+
+    if (pasteData) {
+      const splitData = pasteData.split("") 
+
+      splitData.forEach((data, index) => {
+        if (isNaN(data)) { 
+          return 
+        } else {
+          var originalID = parseInt(originalInput.id.replace(/\D/g, ""))
+          var updatedID = originalID + index
+
+          const foundInput = wrapper.querySelector(`#honeycrisp-single-input-${updatedID}`)
+
+          if (!foundInput) { return }
+
+          foundInput.focus()
+          foundInput.select()
+
+          foundInput.value = data
+        }
+      })
+    }
+  })
+
+  input.addEventListener('beforeinput', (event) => {
+    const isNumeric = n => !isNaN(n);
+
+    if (!isNumeric(event.data)) { 
+      event.preventDefault()
+      return 
+    }
+  })
+
   input.addEventListener('keydown', (event) => {
     const prevEl = input.previousElementSibling;
     const nextEl = input.nextElementSibling;
@@ -124,6 +166,14 @@ function addInputListener(input, wrapper, options) {
 
     if (event.keyCode === 38 || event.keyCode === 40) {
       event.preventDefault()
+    }
+
+    if (event.metaKey === true && event.key === 'v') {
+      // if (isNaN(event.key)) {
+      //   event.preventDefault()
+      // }
+
+      return
     }
 
     if (isNaN(event.key)) {
@@ -162,7 +212,7 @@ function setHiddenInput (wrapper, options) {
   var inputValue = ''
   const hiddenInput = wrapper.querySelector(`input[name=${options['inputName']}]`)
   const inputs = []
-  const inputIds = [0,1,2,3,4,5]
+  const inputIds = [...Array(options['inputCount']).keys()];
 
   inputIds.forEach($input => {
     const foundInput = wrapper.querySelector(`#honeycrisp-single-input-${$input}`)
