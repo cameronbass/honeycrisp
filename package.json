@@ -12,7 +12,9 @@
 		"input",
 		"2FA",
 		"number-input",
-		"javascript"
+		"javascript",
+    "MFA",
+    "OTP"
 	],
   "bugs": "https://github.com/cameronbass/honeycrisp/issues",
   "repository": {
