@@ -125,7 +125,7 @@ function addInputListener(input, wrapper, options) {
  * @param {Object} [options]
 */
 Honeycrisp.create = function (el, options) {
-	return new Honeycrisp(el, options);
+  return new Honeycrisp(el, options);
 };
 
 export default Honeycrisp;
