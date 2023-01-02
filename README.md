@@ -52,12 +52,6 @@ Honeycrisp.create('.honeycrisp', {
 });
 ```
 
-<h1>Future Updates</h1>
-
-- [ ] Add Tests
-- [ ] Enable options for `submitOnComplete` -- Option is currently defaulted to false
-- [ ] Add default stylesheet
-
 ## How can I help?
 
 Honeycrisp is open source and contributions from the community are encouraged! No
