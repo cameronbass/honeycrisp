@@ -48,7 +48,6 @@ Honeycrisp.create('.honeycrisp', {
   inputClass: "input-class",
   WrapperClass: "wrapper-class",
   inputCount: 6,
-  submitOnComplete: false,
 });
 ```
 
