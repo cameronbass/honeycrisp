@@ -8,21 +8,21 @@
   },
   "author": "Cameron Bass",
   "keywords": [
-		"honeycrisp",
-		"input",
-		"2FA",
-		"number-input",
-		"javascript",
+    "honeycrisp",
+    "input",
+    "2FA",
+    "number-input",
+    "javascript",
     "MFA",
-    "OTP"
-	],
+    "OTP
+  ],
   "bugs": "https://github.com/cameronbass/honeycrisp/issues",
   "repository": {
-		"type": "git",
-		"url": "git@github.com:cameronbass/honeycrisp.git"
+    "type": "git",
+    "url": "git@github.com:cameronbass/honeycrisp.git"
   },
   "maintainers": [
-		"Cam Bass <cam@statcasters.com>"
-	],
+    "Cam Bass <cam@statcasters.com>"
+  ],
   "license": "MIT"
 }
