@@ -46,7 +46,7 @@ You can use any classname you would like to locate the element for Honeycrisp to
 Honeycrisp.create('.honeycrisp', {
   inputName: "name",
   inputClass: "input-class",
-  WrapperClass: "wrapper-class",
+  wrapperClass: "wrapper-class",
   inputCount: 6,
 });
 ```
